@@ -5,6 +5,7 @@ var url     = require('url'),
     qs      = require('querystring'),
     express = require('express'),
     app     = express();
+require('dotenv').config()
 
 var TRUNCATE_THRESHOLD = 10,
     REVEALED_CHARS = 3,
@@ -34,8 +35,8 @@ var config = loadConfig();
 
 function authenticate(code, cb) {
   var data = qs.stringify({
-    client_id: config.oauth_client_id,
-    client_secret: config.oauth_client_secret,
+    client_id: process.env.GITHUB_APPLICATION_CLIENT_ID,
+    client_secret: process.env.GITHUB_APPLICATION_CLIENT_SECRET,
     code: code
   });
 
